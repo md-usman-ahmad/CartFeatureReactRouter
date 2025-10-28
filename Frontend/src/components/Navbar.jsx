@@ -63,7 +63,7 @@ export function Navbar({gettingProductsFromDB}){
                     <div className="flex items-center space-x-4">
                     {token ? (
                         <>
-                            <button className="text-gray-700 hover:text-blue-600 relative">
+                            <button className="text-gray-700 hover:text-yellow-200 relative">
                                 <svg
                                     className="w-6 h-6"
                                     fill="none"
@@ -77,13 +77,13 @@ export function Navbar({gettingProductsFromDB}){
                                     d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0h8"
                                     ></path>
                                 </svg>
-                                <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                                <span className="absolute -top-2 -right-2 bg-zinc-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                                     XX
                                 </span>
                             </button>
 
                             <Link
-                                className={`cursor-pointer font-medium text-grey-700 hover:text-red-900 }`} 
+                                className={`cursor-pointer font-medium text-grey-700 hover:text-red-500 }`} 
                                 onClick={()=>{
                                     localStorage.removeItem("token");
                                     alert("Logout Successfull");

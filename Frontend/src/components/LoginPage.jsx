@@ -38,12 +38,11 @@ export function LoginPage(){
     const forgotPassword = ()=>{
         const fpUsername = fpUsernameRef.current.value;
         const fpPassword = fpPasswordRef.current.value;
+        console.log(fpUsername,fpPassword);
+
         axios({
           method : "PATCH",
-          url : "http://localhost:4500/login",
-          headers : {
-            Authorization : localStorage.getItem("token")
-          },
+          url : "http://localhost:4500/login/forgotPassword",
           data : {
             fpUsername , fpPassword
           }
@@ -51,9 +50,11 @@ export function LoginPage(){
         .then((response)=>{
           console.log("forgotPassword response",response);
           alert(response.data);
+          navigate("/Login");
         })
         .catch((error)=>{
           console.log("errorPassword = ",error);
+          alert(error.response.data);
         })
     }
 

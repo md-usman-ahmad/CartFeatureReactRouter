@@ -4,7 +4,7 @@ import { MainLayout } from "./mainLayout.jsx"
 
 export function HomePage() {
 const token = localStorage.getItem("token");
-
+console.log("homepage token = ",token);
   return (
     <>
         <MainLayout>
