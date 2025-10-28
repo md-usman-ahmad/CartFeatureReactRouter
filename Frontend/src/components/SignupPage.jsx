@@ -32,7 +32,7 @@ export function SignupPage(){
         .then((response)=>{
             console.log("signup response = ",response);
             alert(response.data);
-            navigate("/login");
+            navigate("/Login");
         })
         .catch((error)=>{
             console.log("signup error = ",error);

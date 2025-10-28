@@ -1,6 +1,8 @@
 const express = require("express");
 const dbQuery = require("../database/dbhelper");
 const Router = express();
+const bcrypt = require("bcrypt");
+const { SALTROUND } = require("../constants");
 
 Router.post("/", async function(request,response){
     try {
@@ -18,9 +20,9 @@ Router.post("/", async function(request,response){
 
             if(outputFromDB.length === 0){
                 query = "insert into users(firstname , age , gender , username , email , password , provider) values(?,?,?,?,?,?,?)"
-                params = [firstName , age , gender , username , email , password , "local"];
+                params = [firstName , age , gender , username , email , bcrypt.hashSync(password,SALTROUND) , "local"];
                 await dbQuery(query , params);
-                
+
                 response.send(`${username} added into DB successfully`);
             } else{
                 throw "Username already existt!!! try different username";
