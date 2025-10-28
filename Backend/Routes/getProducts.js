@@ -35,7 +35,7 @@ Router.get("/singleProduct" , async function(request,response){
         console.log(`Fetched a Product title-${outputFromDB[0].title} `);
         response.send(outputFromDB);
     } catch (error) {
-        console.log("getPRoducts error(GET) = ",error);
+        console.log("singleProducts error(GET) = ",error);
         response.status(500).send(error);
     }
 })

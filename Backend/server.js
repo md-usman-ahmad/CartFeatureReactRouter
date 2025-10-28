@@ -15,8 +15,9 @@ app.use(
 );
 
 const getProductsRouter = require("./Routes/getProducts.js")
+const signupRouter = require("./Routes/signup.js");
 app.use("/getProducts", getProductsRouter);
-
+app.use("/signup" , signupRouter);
 
 
 

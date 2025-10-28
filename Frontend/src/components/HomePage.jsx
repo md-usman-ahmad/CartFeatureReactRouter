@@ -38,7 +38,7 @@ const token = localStorage.getItem("token");
 
         <div className="hero-demo vh-100" style={{
             overflow: "hidden",
-            height: "630px"
+            height: "530px"
         }} >
             <section className="sm:mt-6 lg:mt-8 mt-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="my-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28  gap-3 lg:flex-justify lg:flex flex-col lg:flex-row">
@@ -89,7 +89,78 @@ const token = localStorage.getItem("token");
                 </div>
             </section>
         </div>
- 
+        
+         {/* <!-- Features Section --> */}
+    <section class="py-10 ">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">Why Choose ShopEase?</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🚚</span>
+                    </div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-2">Free Shipping</h4>
+                    <p class="text-gray-600">Free shipping on all orders over $50. Fast and reliable delivery.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🔒</span>
+                    </div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-2">Secure Payment</h4>
+                    <p class="text-gray-600">Your payment information is always safe and secure with us.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">↩️</span>
+                    </div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-2">Easy Returns</h4>
+                    <p class="text-gray-600">30-day return policy. No questions asked, hassle-free returns.</p>
+                </div>
+            </div>
+        </div>
+    </section>  
+
+    {/* <!-- Footer --> */}
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">🛍️ ShopEase</h4>
+                    <p class="text-gray-400">Your trusted online shopping destination for quality products at great prices.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-white">Home</a></li>
+                        <li><a href="#products" class="hover:text-white">Products</a></li>
+                        <li><a href="#about" class="hover:text-white">About Us</a></li>
+                        <li><a href="#contact" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Customer Service</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white">Returns</a></li>
+                        <li><a href="#" class="hover:text-white">Shipping Info</a></li>
+                        <li><a href="#" class="hover:text-white">Track Order</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl">📘</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl">🐦</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl">📷</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl">💼</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 ShopEase. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
         </MainLayout>
     </>
