@@ -1,7 +1,7 @@
 import { Link , useLocation} from "react-router";
 
 
-export function Navbar(){
+export function Navbar({gettingProductsFromDB}){
 
     const Location = useLocation();
     console.log("Location.pathname = ",Location.pathname);
@@ -35,36 +35,60 @@ export function Navbar(){
                             Home
                         </Link>
 
-                        <Link
+                        <Link to="/Sports"
                             className={`cursor-pointer font-medium ${Location.pathname === "/Sports" ? "text-blue-600" : "text-gray-700 hover:text-blue-600" }`}
                             >
                             Sports
                         </Link>
 
-                        <Link
+                        <Link to="/Men"
                             className={`cursor-pointer font-medium ${Location.pathname === "/Men" ? "text-blue-600" : "text-gray-700 hover:text-blue-600" }`}
                             >
                             Men
                         </Link>
 
-                        <Link
+                        <Link to="/Electronics"
                             className={`cursor-pointer font-medium ${Location.pathname === "/Electronics" ? "text-blue-600" : "text-gray-700 hover:text-blue-600" }`}
                             >
                             Electronics
                         </Link>
-
+                        {token && 
                         <Link
                             className={`cursor-pointer font-medium ${Location.pathname === "/Add Products" ? "text-blue-600" : "text-gray-700 hover:text-blue-600" }`}
                             >
                             Add Products
-                        </Link>
+                        </Link>}
                     </nav>
 
                     <div className="flex items-center space-x-4">
                     {token ? (
                         <>
+                            <button className="text-gray-700 hover:text-blue-600 relative">
+                                <svg
+                                    className="w-6 h-6"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0h8"
+                                    ></path>
+                                </svg>
+                                <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                                    XX
+                                </span>
+                            </button>
+
                             <Link
                                 className={`cursor-pointer font-medium text-grey-700 hover:text-red-900 }`} 
+                                onClick={()=>{
+                                    localStorage.removeItem("token");
+                                    alert("Logout Successfull");
+                                }}
+                                to="/"
                                 >
                                 Logout
                             </Link>
@@ -72,15 +96,15 @@ export function Navbar(){
                     ) : (
                         <>
                             <Link 
-                                to="/signup"
-                                className={`cursor-pointer font-medium ${Location.pathname === "/signup" ? "text-green-600" : "text-gray-700 hover:text-green-600" }`}
+                                to="/Signup"
+                                className={`cursor-pointer font-medium ${Location.pathname === "/Signup" ? "text-green-600" : "text-gray-700 hover:text-green-600" }`}
                                 >
                                 Signup
                             </Link>
 
                             <Link 
-                                to="/login"
-                                className={`cursor-pointer font-medium ${Location.pathname === "/login" ? "text-blue-600" : "text-gray-700 hover:text-blue-600" }`}
+                                to="/Login"
+                                className={`cursor-pointer font-medium ${Location.pathname === "/Login" ? "text-blue-600" : "text-gray-700 hover:text-blue-600" }`}
                                 >
                                 Login
                             </Link>

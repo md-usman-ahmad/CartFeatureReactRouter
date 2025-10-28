@@ -4,6 +4,8 @@ import { HomePage } from "./HomePage.jsx";
 import { PageNotFound } from "./PageNotFound.jsx"
 import { SignupPage } from "./SignupPage.jsx";
 import { LoginPage } from "./LoginPage.jsx";
+import { categoryComponent } from "./categoryComponent.jsx";
+import { ProductPage } from "./ProductPage.jsx";
 
 
 const routes = createBrowserRouter([
@@ -13,12 +15,20 @@ const routes = createBrowserRouter([
         errorElement : <PageNotFound></PageNotFound>
     },
     {
-        path : "/signup",
+        path : "/Signup",
         Component : SignupPage
     },
     {
-        path : "/login",
+        path : "/Login",
         Component : LoginPage
+    },
+    {
+        path : "/:categoryName",
+        Component : categoryComponent
+    },
+    {
+        path : "/:categoryName/:productId",
+        Component : ProductPage
     }
 ])
 

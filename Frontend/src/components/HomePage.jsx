@@ -20,12 +20,12 @@ const token = localStorage.getItem("token");
                 </h2>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <Link to="/login" 
+                <Link to="/Login" 
                     className="group relative border-2 border-blue-500 text-blue-500 hover:text-white font-medium px-12 py-4 rounded-none transition-all duration-300 overflow-hidden">
                     <span className="relative z-10">Login</span>
                     <div className="absolute inset-0 bg-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                 </Link>
-                <Link to="/signup"  
+                <Link to="/Signup"  
                     className="group relative border-2 border-green-500 text-green-500 hover:text-white font-medium px-12 py-4 rounded-none transition-all duration-300 overflow-hidden"
                 >
                     <span className="relative z-10">Sign Up</span>
