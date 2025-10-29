@@ -1,8 +1,19 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { MainLayout } from "./mainLayout";
+import { useNavigate } from "react-router";
 
 export function AddProduct() {
+    const navigate = useNavigate();
+
+    const token = localStorage.getItem("token");
+    useEffect(()=>{
+        if(!token){
+            alert("Login first!!")
+            navigate("/");
+        }
+    },[])
+
   const imgsrcRef = useRef();
   const titleRef = useRef();
   const sloganRef = useRef();

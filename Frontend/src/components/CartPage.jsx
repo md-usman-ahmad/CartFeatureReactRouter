@@ -1,8 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { MainLayout } from "./mainLayout";
+import { useNavigate } from "react-router";
 
 export function CartPage({ allCartItems , onAddingAnItemToCart , onRemovingAnItemFromCart }) {
+    const navigate = useNavigate();
+    const token = localStorage.getItem("token");
+    useEffect(()=>{
+        if(!token){
+            alert("Login first!!")
+            navigate("/");
+        }
+    },[])
 
     const [MyCartItems , setMyCartItems] = useState([]);
 

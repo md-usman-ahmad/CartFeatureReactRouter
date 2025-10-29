@@ -1,9 +1,16 @@
-import { useState,useContext } from "react";
-import { Link } from "react-router";
+import { useState,useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router";
 // import "./atc.css"
 
-export function Card({ productId, imgsrc, title, slogan ,price ,category , onAddingAnItemToCart , onRemovingAnItemToCart , allCartItems }) {
+export function Card({ productId, imgsrc, title, slogan ,price ,category}) {
+    const token = localStorage.getItem("token");
 
+  const onAddingAnItemToCart = ()=>{
+    console.log("Card token = ",token)
+        if(!token){
+            alert("Login to add Items in your CART!!!");
+        }
+  }
   const [X,setX] = useState(false);
 
   return (
@@ -54,7 +61,7 @@ export function Card({ productId, imgsrc, title, slogan ,price ,category , onAdd
                 </>
                 ) : (
                   <>
-                    <button onClick={()=>{onAddingAnItemToCart(productId,imgsrc,title,slogan,price,category) ; setX(true)}} className="atc w-full bg-yellow-600 hover:bg-amber-950 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                    <button onClick={(e)=>{e.preventDefault(); e.stopPropagation();     onAddingAnItemToCart(productId,imgsrc,title,slogan,price,category)}} className="atc w-full bg-yellow-600 hover:bg-amber-950 text-white font-medium py-2 px-4 rounded-lg transition-colors">
                         Add to Cart
                     </button>
                   </>

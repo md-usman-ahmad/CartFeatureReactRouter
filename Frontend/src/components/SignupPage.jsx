@@ -1,10 +1,21 @@
 import { Link, useNavigate } from "react-router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { MainLayout } from "./mainLayout.jsx";
 
 export function SignupPage(){
     const navigate = useNavigate();
+
+    const token = localStorage.getItem("token");
+    console.log("Signup Token = ", token);
+    useEffect(()=>{
+        if(token){
+            alert("Logout first!!!")
+            navigate("/");
+        }
+    },[])
+
+
     const [Gender , setGender] = useState();
     const firstNameRef = useRef();
     const ageRef = useRef();

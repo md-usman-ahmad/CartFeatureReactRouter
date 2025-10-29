@@ -1,10 +1,20 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useRef , useEffect } from "react";
 import { Link , useNavigate } from "react-router"
 import { MainLayout } from "./mainLayout";
 
 export function LoginPage(){
     const navigate = useNavigate();
+
+    const token = localStorage.getItem("token");
+        console.log("Login Token = ", token);
+        useEffect(()=>{
+            if(token){
+                alert("Logout first!!!")
+                navigate("/");
+            }
+        },[])
+
     const loginUsernameRef = useRef();
     const loginPasswordRef = useRef();
     const fpUsernameRef = useRef();
