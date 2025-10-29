@@ -7,6 +7,7 @@ import { LoginPage } from "./LoginPage.jsx";
 import { categoryComponent } from "./categoryComponent.jsx";
 import { ProductPage } from "./ProductPage.jsx";
 import { AddProduct } from "./AddProduct.jsx";
+import { CartPage } from "./CartPage.jsx";
 
 const routes = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const routes = createBrowserRouter([
     {
         path : "AddProduct",
         Component : AddProduct
+    },
+    {
+        path : "/CartPage",
+        Component : CartPage
     }
 ])
 

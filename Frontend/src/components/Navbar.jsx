@@ -1,7 +1,7 @@
 import { Link , useLocation} from "react-router";
 
 
-export function Navbar({gettingProductsFromDB}){
+export function Navbar(){
 
     const Location = useLocation();
     console.log("Location.pathname = ",Location.pathname);
@@ -63,7 +63,8 @@ export function Navbar({gettingProductsFromDB}){
                     <div className="flex items-center space-x-4">
                     {token ? (
                         <>
-                            <button className="text-gray-700 hover:text-yellow-200 relative">
+                        <Link to="/CartPage" >
+                            <button className={`relative ${Location.pathname === "/CartPage" ? "text-yellow-200" : "text-gray-700 hover:text-yellow-200"} `}>
                                 <svg
                                     className="w-6 h-6"
                                     fill="none"
@@ -81,7 +82,7 @@ export function Navbar({gettingProductsFromDB}){
                                     XX
                                 </span>
                             </button>
-
+                        </Link>
                             <Link
                                 className={`cursor-pointer font-medium text-grey-700 hover:text-red-500 }`} 
                                 onClick={()=>{
