@@ -53,10 +53,10 @@ export function Navbar({gettingProductsFromDB}){
                             Electronics
                         </Link>
                         {token && 
-                        <Link
-                            className={`cursor-pointer font-medium ${Location.pathname === "/Add Products" ? "text-blue-600" : "text-gray-700 hover:text-blue-600" }`}
+                        <Link to="/AddProduct"
+                            className={`cursor-pointer font-medium ${Location.pathname === "/AddProduct" ? "text-blue-600" : "text-gray-700 hover:text-blue-600" }`}
                             >
-                            Add Products
+                            AddProduct
                         </Link>}
                     </nav>
 

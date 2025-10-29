@@ -6,7 +6,7 @@ import { SignupPage } from "./SignupPage.jsx";
 import { LoginPage } from "./LoginPage.jsx";
 import { categoryComponent } from "./categoryComponent.jsx";
 import { ProductPage } from "./ProductPage.jsx";
-
+import { AddProduct } from "./AddProduct.jsx";
 
 const routes = createBrowserRouter([
     {
@@ -29,6 +29,10 @@ const routes = createBrowserRouter([
     {
         path : "/:categoryName/:productId",
         Component : ProductPage
+    },
+    {
+        path : "AddProduct",
+        Component : AddProduct
     }
 ])
 
