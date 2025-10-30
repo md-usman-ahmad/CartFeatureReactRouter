@@ -72,7 +72,7 @@ Router.get("/singleItem", async function(request,response){
         let params = [pId , currentLoggedInuserId];
 
         let outputFromDB = await dbQuery(query,params);
-        console.log("addToCart k baad DB se wo item updated quantity k saath larhe = ", outputFromDB);
+        console.log("addToCart k baad DB se wo particular item updated quantity k saath larhe = ", outputFromDB);
         response.send(outputFromDB);
 
     } catch (error) {
