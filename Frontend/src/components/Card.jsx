@@ -7,7 +7,7 @@ export function Card({ productId, imgsrc, title, slogan ,price ,category}) {
     // const [X,setX] = useState(false);
     const [CartState, setCartState] = useState({
         myCartItem: [],
-        X : false,
+        X : false
     });
 
     const token = localStorage.getItem("token");
@@ -20,7 +20,7 @@ export function Card({ productId, imgsrc, title, slogan ,price ,category}) {
             console.log("API CALL")
             axios({
                 method : "POST",
-                url : "http://localhost:4500/addToCart",
+                url : "http://localhost:4500/myCartItems/addToCart",
                 data : {
                     imgsrc,title,slogan,price,category,pId
                 },
@@ -58,6 +58,60 @@ export function Card({ productId, imgsrc, title, slogan ,price ,category}) {
         }
   }
 
+  const onRemovingAnItemFromCart = (pId , title)=>{
+    if(!token){
+       alert("Login to remove an Item from your CART!!!");    
+    } else {
+        axios({
+            method : "PATCH",
+            url : "http://localhost:4500/myCartItems/removeFromCart",
+            params : {
+                pId , title 
+            },
+            headers : {
+                Authorization : token
+            }
+        })
+        .then((response)=>{
+            console.log("removeFromCart = ",response.data);
+            alert(response.data);
+            axios({
+                method : "GET",
+                url : "http://localhost:4500/myCartItems/singleItem",
+                params : {
+                    pId
+                },
+                headers : {
+                    Authorization : token
+                }
+            })
+            .then((response)=>{
+                console.log("Fetched just after removeFromCart = ",response.data);
+                if(response.data.length === 0){
+                    setCartState( (prevState)=>{
+                        return {
+                            ...prevState,
+                            X : false,
+                            myCartItem : response.data
+                        }
+                    })
+                } else{
+                    setCartState( (prevState)=>{
+                        return { 
+                            ...prevState,
+                            myCartItem : response.data  
+                        }
+                    })
+                }
+            })
+        })
+        .catch((error)=>{
+            console.log("removeFromCart = ",error);
+        })
+    }
+  }
+
+
   return (
     <>
       <div className="mc w-[300px] bg-white dark:bg-slate-950 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
@@ -83,14 +137,14 @@ export function Card({ productId, imgsrc, title, slogan ,price ,category}) {
                     <button onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        onRemovingAnItemToCart(productId,title);
+                        onRemovingAnItemFromCart(productId,title);
                       }}
                       className="px-3 py-1 bg-red-600 rounded"
                     >
                       -
                     </button>
                     <span className="text-lg font-medium text-white">
-                     {CartState.myCartItem[0].quantity}
+                    {CartState.myCartItem.length > 0 && CartState.myCartItem[0].quantity}
                     </span>
                     <button
                       className="px-3 py-1 bg-green-600 rounded"
