@@ -10,27 +10,76 @@ export function CartPage() {
 
     const [MyCartItems , setMyCartItems] = useState([]);
 
+    
+
+    const myCartItems = ()=>{
+        axios({
+            method : "GET",
+            url : "http://localhost:4500/myCartItems",
+            headers : {
+                Authorization : token
+            }
+        })
+        .then((response)=>{
+            console.log("response.data = ",response.data);
+            setMyCartItems(response.data);
+        })
+        .catch((error)=>{
+            console.log("error = ",error);
+        })
+    }
     useEffect( ()=>{
         if(!token){
             alert("Login first!!")
             navigate("/");
         } else{
-            axios({
-                method : "GET",
-                url : "http://localhost:4500/myCartItems",
-                headers : {
-                    Authorization : token
-                }
-            })
-            .then((response)=>{
-                console.log("response.data = ",response.data);
-                setMyCartItems(response.data);
-            })
-            .catch((error)=>{
-                console.log("error = ",error);
-            })
+            myCartItems();
         }
     },[])
+
+    const handleOnAddingAnItemToCart = (imgsrc,title,slogan,price, category ,pId)=>{
+        axios({
+            method : "POST",
+            url : "http://localhost:4500/myCartItems/addToCart",
+            data : {
+                imgsrc,title,slogan,price,category,pId
+            },
+            headers : {
+                Authorization : localStorage.getItem("token")
+            }
+        })
+        .then((response)=>{
+            console.log("addToCart response.data = ",response.data);
+            alert(response.data);
+            myCartItems();
+        })
+        .catch((error)=>{
+            console.log("addToCart error = ",error);
+        })
+    }
+
+    const handleOnRemovingAnItemFromCart = (pId,title)=>{
+        axios({
+            method : "PATCH",
+            url : "http://localhost:4500/myCartItems/removeFromCart",
+            params : {
+                pId , title 
+            },
+            headers : {
+                Authorization : localStorage.getItem("token")
+            }
+        })
+        .then((response)=>{
+            console.log("removeFromCart = ",response.data);
+            alert(response.data);
+            myCartItems();
+        })
+        .catch((error)=>{
+            console.log("removeFromCart = ",error);
+        })
+    }
+
+
 
   return (
     <>
@@ -83,7 +132,9 @@ export function CartPage() {
                             {MyCartItems.map( (item)=>{
                                 return  <CartCard
                                 key={item.pId} 
-                                {...item} 
+                                {...item}  
+                                onRemovingAnItemFromCart = {handleOnRemovingAnItemFromCart}
+                                onAddingAnItemToCart = {handleOnAddingAnItemToCart}
                                 >
                                 </CartCard>
                             })}
