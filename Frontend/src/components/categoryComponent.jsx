@@ -23,8 +23,6 @@ export function categoryComponent(){
         })
         .then((response)=>{
             console.log("response.data = ",response.data);
-            // let ElectronicsProducts = response.data ;
-            // console.log("ElectronicsProducts = ",ElectronicsProducts);
             setCategoryProducts(response.data)
         })
         .catch((error)=>{
@@ -38,9 +36,9 @@ export function categoryComponent(){
             <MainLayout>
                 <div className="w-full flex flex-wrap justify-center mx-auto gap-3 p-4  ">
                     {categoryProducts.map( (item)=>{
-                        return <Link to={`/${categoryName}/${item.productId}`} 
+                        return <Link to={`/${categoryName}/${item.productId}`} key={item.productId} 
                         >
-                         <Card key={item.productId} {...item}></Card>
+                         <Card  {...item}></Card>
                         </Link>
                     })}
                 </div>

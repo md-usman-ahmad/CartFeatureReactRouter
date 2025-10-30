@@ -1,35 +1,35 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { MainLayout } from "./mainLayout";
+import { MainLayout } from "./mainLayout.jsx";
 import { useNavigate } from "react-router";
+import { CartCard } from "./CartCard.jsx";
 
-export function CartPage({ allCartItems , onAddingAnItemToCart , onRemovingAnItemFromCart }) {
+export function CartPage() {
     const navigate = useNavigate();
     const token = localStorage.getItem("token");
-    useEffect(()=>{
-        if(!token){
-            alert("Login first!!")
-            navigate("/");
-        }
-    },[])
 
     const [MyCartItems , setMyCartItems] = useState([]);
 
     useEffect( ()=>{
-        axios({
-            method : "GET",
-            url : "http://localhost:4500/myCartItems",
-            headers : {
-                Authorization : localStorage.getItem("token")   
-            }
-        })
-        .then((response)=>{
-            console.log("response.data = ",response.data);
-            setMyCartItems(response.data);
-        })
-        .catch((error)=>{
-            console.log("error = ",error);
-        })
+        if(!token){
+            alert("Login first!!")
+            navigate("/");
+        } else{
+            axios({
+                method : "GET",
+                url : "http://localhost:4500/myCartItems",
+                headers : {
+                    Authorization : token
+                }
+            })
+            .then((response)=>{
+                console.log("response.data = ",response.data);
+                setMyCartItems(response.data);
+            })
+            .catch((error)=>{
+                console.log("error = ",error);
+            })
+        }
     },[])
 
   return (
@@ -66,7 +66,7 @@ export function CartPage({ allCartItems , onAddingAnItemToCart , onRemovingAnIte
       </div>
       }
 
-      {/* {MyCartItems.length > 0 && 
+      {MyCartItems.length > 0 && 
         <div className="table-demo justify-items-center">
             <div className="md:w-3/4 ">
                 <div className="bg-white rounded-lg shadow-md p-6 mb-4">
@@ -84,8 +84,6 @@ export function CartPage({ allCartItems , onAddingAnItemToCart , onRemovingAnIte
                                 return  <CartCard
                                 key={item.pId} 
                                 {...item} 
-                                onAddingAnItemToCart={onAddingAnItemToCart}
-                                onRemovingAnItemFromCart={onRemovingAnItemFromCart}
                                 >
                                 </CartCard>
                             })}
@@ -104,7 +102,7 @@ export function CartPage({ allCartItems , onAddingAnItemToCart , onRemovingAnIte
                 </div>
             </div>
         </div>
-        } */}
+        }
       </MainLayout>
     </>
   );

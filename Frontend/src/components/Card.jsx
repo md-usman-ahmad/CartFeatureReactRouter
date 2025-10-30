@@ -1,17 +1,62 @@
+import axios from "axios";
 import { useState,useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 // import "./atc.css"
 
 export function Card({ productId, imgsrc, title, slogan ,price ,category}) {
+    // const [X,setX] = useState(false);
+    const [CartState, setCartState] = useState({
+        myCartItem: [],
+        X : false,
+    });
+
     const token = localStorage.getItem("token");
 
-  const onAddingAnItemToCart = ()=>{
+  const onAddingAnItemToCart = (imgsrc,title,slogan,price,category,pId)=>{
     console.log("Card token = ",token)
         if(!token){
-            alert("Login to add Items in your CART!!!");
+            alert("Login to add Items in your CART!!!");    
+        } else{
+            console.log("API CALL")
+            axios({
+                method : "POST",
+                url : "http://localhost:4500/addToCart",
+                data : {
+                    imgsrc,title,slogan,price,category,pId
+                },
+                headers : {
+                    Authorization : token
+                }
+            })
+            .then((response)=>{
+                console.log("addToCart response.data = ",response.data);
+                alert(response.data);
+                axios({
+                    method : "GET",
+                    url : "http://localhost:4500/myCartItems/singleItem",
+                    params : {
+                        pId
+                    },
+                    headers : {
+                        Authorization : token
+                    }
+                })
+                .then((response)=>{
+                    console.log("Fetched just after addToCart = ",response.data);
+                    setCartState( (prevState)=>{
+                        return {
+                            ...prevState,
+                            X : true,
+                            myCartItem : response.data
+                        }
+                    })
+                })
+            })
+            .catch((error)=>{
+                console.log("addToCart error = ",error);
+            })
         }
   }
-  const [X,setX] = useState(false);
 
   return (
     <>
@@ -32,10 +77,12 @@ export function Card({ productId, imgsrc, title, slogan ,price ,category}) {
                       <span className="text-sm text-gray-600 dark:text-gray-300">(4.8)</span>
                   </div>
               </div> 
-              {X ? (
+              {CartState.X ? (
                 <>
                   <div className="flex items-center justify-between">
-                    <button onClick={() => {
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
                         onRemovingAnItemToCart(productId,title);
                       }}
                       className="px-3 py-1 bg-red-600 rounded"
@@ -43,16 +90,14 @@ export function Card({ productId, imgsrc, title, slogan ,price ,category}) {
                       -
                     </button>
                     <span className="text-lg font-medium text-white">
-                      {allCartItems.find((item) => {
-                        if (item.pId === productId) {
-                          return item;
-                        }
-                      }).quantity}
+                     {CartState.myCartItem[0].quantity}
                     </span>
                     <button
                       className="px-3 py-1 bg-green-600 rounded"
-                      onClick={() => {
-                        onAddingAnItemToCart(productId, imgsrc, title,slogan, price ,category);
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onAddingAnItemToCart(imgsrc, title,slogan, price ,category, productId);
                       }}
                     >
                       +
@@ -61,7 +106,13 @@ export function Card({ productId, imgsrc, title, slogan ,price ,category}) {
                 </>
                 ) : (
                   <>
-                    <button onClick={(e)=>{e.preventDefault(); e.stopPropagation();     onAddingAnItemToCart(productId,imgsrc,title,slogan,price,category)}} className="atc w-full bg-yellow-600 hover:bg-amber-950 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                    <button onClick={(e)=>{
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onAddingAnItemToCart(imgsrc,title,slogan,price,category,productId);
+                    }} 
+                    className="atc w-full bg-yellow-600 hover:bg-amber-950 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                    >
                         Add to Cart
                     </button>
                   </>

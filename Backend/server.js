@@ -19,11 +19,13 @@ const signupRouter = require("./Routes/signup.js");
 const loginRouter = require("./Routes/login.js");
 const addProductRouter = require("./Routes/addProduct.js");
 const myCartItemsRouter = require("./Routes/myCartItems.js");
+const addToCartRouter = require("./Routes/addToCart.js");
 app.use("/getProducts", getProductsRouter);
 app.use("/signup" , signupRouter);
 app.use("/login" , loginRouter);
 app.use("/addProduct" , addProductRouter);
 app.use("/myCartItems" , myCartItemsRouter);
+app.use("/addToCart" , addToCartRouter);
 
 
 
