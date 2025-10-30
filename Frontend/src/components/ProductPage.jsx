@@ -11,7 +11,7 @@ export function ProductPage() {
   useEffect(() => {
     axios({
       method: "GET",
-      url: "http://localhost:4500/getProducts/singleProduct",
+      url: "http://localhost:4500/getCategoryProducts/singleProduct",
       params: {
         categoryName,
         productId,

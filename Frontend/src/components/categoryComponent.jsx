@@ -16,13 +16,13 @@ export function categoryComponent(){
     useEffect( ()=>{ 
         axios({
             method : "GET",
-            url : "http://localhost:4500/getProducts",
+            url : "http://localhost:4500/getCategoryProducts",
             params : {
                categoryName
             }
         })
         .then((response)=>{
-            console.log("response.data = ",response.data);
+            console.log("getCategoryProducts = ",response.data);
             setCategoryProducts(response.data)
         })
         .catch((error)=>{

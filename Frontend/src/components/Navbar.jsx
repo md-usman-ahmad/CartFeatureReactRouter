@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { Link , useLocation} from "react-router";
+import axios from "axios";
 
 
 export function Navbar(){
@@ -8,6 +10,27 @@ export function Navbar(){
 
     let token = localStorage.getItem("token");
     console.log("Navbar token = ",token);
+
+    const [totalCartItemsArray , setTotalCartItemsArray] = useState([]);
+
+    useEffect( ()=>{
+        if(token){
+            axios({
+                method : "GET",
+                url : "http://localhost:4500/myCartItems",
+                headers : {
+                    Authorization : token
+                } 
+            })
+            .then((response)=>{
+                console.log("navbar CartItems Count = ",response.data);
+                setTotalCartItemsArray(response.data);
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
+        } 
+    },[])
 
 
     return (
@@ -79,7 +102,11 @@ export function Navbar(){
                                     ></path>
                                 </svg>
                                 <span className="absolute -top-2 -right-2 bg-zinc-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                                    XX
+                                    {totalCartItemsArray.map( (item)=>{
+                                        return item.quantity
+                                    }).reduce( (acc,cv)=>{
+                                        return acc + cv
+                                    },0)}
                                 </span>
                             </button>
                         </Link>
