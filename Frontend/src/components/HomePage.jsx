@@ -131,10 +131,10 @@ console.log("homepage token = ",token);
                 <div>
                     <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
                     <ul className="space-y-2 text-gray-400">
-                        <li><a href="#home" className="hover:text-white">Home</a></li>
-                        <li><a href="#products" className="hover:text-white">Products</a></li>
-                        <li><a href="#about" className="hover:text-white">About Us</a></li>
-                        <li><a href="#contact" className="hover:text-white">Contact</a></li>
+                        <li><Link to="/Sports" className="hover:text-white">Sports</Link></li>
+                        <li><Link to="/Men" className="hover:text-white">Men</Link></li>
+                        <li><Link to="/Electronics" className="hover:text-white">Electronics</Link></li>
+                        <li><Link to="/AddProduct" className="hover:text-white">AddProduct</Link></li>
                     </ul>
                 </div>
                 <div>

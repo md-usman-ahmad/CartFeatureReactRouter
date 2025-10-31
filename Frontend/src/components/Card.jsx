@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState,useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
-// import "./atc.css"
+import "./atc.css"
 
 export function Card({ productId, imgsrc, title, slogan ,price ,category}) {
     // const [X,setX] = useState(false);
@@ -139,7 +139,7 @@ export function Card({ productId, imgsrc, title, slogan ,price ,category}) {
                         e.stopPropagation();
                         onRemovingAnItemFromCart(productId,title);
                       }}
-                      className="px-3 py-1 bg-red-600 rounded"
+                      className="px-3 py-1 bg-red-600 rounded minus"
                     >
                       -
                     </button>
@@ -147,7 +147,7 @@ export function Card({ productId, imgsrc, title, slogan ,price ,category}) {
                     {CartState.myCartItem.length > 0 && CartState.myCartItem[0].quantity}
                     </span>
                     <button
-                      className="px-3 py-1 bg-green-600 rounded"
+                      className="px-3 py-1 bg-green-600 rounded plus"
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();

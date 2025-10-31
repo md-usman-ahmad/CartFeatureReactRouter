@@ -1,0 +1,33 @@
+.plus {
+  transition: all 0.2s ease;
+  background-color: rgb(102, 255, 0);
+   /* box-shadow: 3px 3px 6px rgb(17, 254, 0); */
+}
+.plus:hover {
+    background-color: #fafafa;  
+  color: hsl(0, 0%, 0%);
+  transform: translateY(8px);
+  box-shadow: 1px 6px 5px rgba(0, 255, 76, 0.896);
+}
+.plus:active {
+  transform: scale(0.85);
+  box-shadow: 10px 12px 5px rgb(85, 255, 0);
+}
+.minus {
+  transition: all 0.2s ease;
+  background-color: rgb(255, 0, 0);
+   /* box-shadow: 3px 3px 6px rgb(17, 254, 0); */
+}
+.minus:hover {
+    background-color: #fafafa;  
+  color: hsl(0, 0%, 0%);
+  transform: translateY(8px);
+  box-shadow: 1px 6px 5px rgba(255, 0, 0, 0.896);
+}
+.minus:active {
+  transform: scale(0.85);
+  box-shadow: 10px 12px 5px rgb(255, 0, 0);
+}
+.product-row:hover {
+  background-color: #f9fafb;
+}

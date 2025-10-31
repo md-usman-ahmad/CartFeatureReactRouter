@@ -1,0 +1,34 @@
+.atc {
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+  background-color: rgb(234, 165, 26);
+}
+
+.atc:hover {
+  background-color: #ffffff;  
+  color: #000000;
+  transform: translateY(8px);
+  box-shadow: 1px 6px 5px rgba(57, 59, 62, 0.896);
+}
+
+.atc:active {
+  transform: scale(0.96);
+  /* background-color: rgb(0, 115, 255); */
+  box-shadow: 10px 12px 5px rgba(255, 255, 255, 0.341);
+}
+
+
+.mc {
+  transition: all 0.3s ease;   /* or  transform 0.3s ease, box-shadow 0.3s ease */
+  box-shadow: 3px 3px 6px rgba(51, 46, 46, 0.951);
+}
+.mc:hover {
+  background-color: #000000 ;   
+  color: #ffffff;
+  transform: translateY(8px);
+  box-shadow: 10px 16px 5px rgba(49, 51, 55, 0.896);
+}

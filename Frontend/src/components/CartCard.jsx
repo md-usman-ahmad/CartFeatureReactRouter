@@ -1,11 +1,7 @@
-
+import "./cartCard.css";
 
 export function CartCard({imgsrc,title,slogan,price, category,quantity ,pId , onAddingAnItemToCart , onRemovingAnItemFromCart}){
-
-
-
-
-
+    
     return (
     <>
         <tr className="product-row border-b">

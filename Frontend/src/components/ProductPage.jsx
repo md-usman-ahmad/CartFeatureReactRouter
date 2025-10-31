@@ -38,7 +38,7 @@ export function ProductPage() {
         <p id="zen-slogan" className="text-lg font-light text-gray-600 max-w-lg mx-auto">Experience crystal-clear audio like never before</p>
         </div> */}
             <div className="product-image h-72 mb-8 mx-auto max-w-lg rounded-lg overflow-hidden">
-              <img src={productDetails[0].imgsrc} alt="" classNameName="w-full h-full object-contain" />
+              <img src={productDetails[0].imgsrc} alt="" className="w-full h-full object-contain" />
             </div>
             <div className="text-center mb-12">
               <span id="zen-price" className="text-5xl font-thin text-gray-800 me-3">
