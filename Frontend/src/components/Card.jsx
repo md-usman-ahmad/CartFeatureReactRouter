@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router";
 import "./atc.css"
 
 export function Card({ productId, imgsrc, title, slogan ,price ,category}) {
-    // const [X,setX] = useState(false);
+    
     const [CartState, setCartState] = useState({
         myCartItem: [],
         X : false
