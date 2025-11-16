@@ -21,13 +21,6 @@ export function AddProduct() {
   const categoryRef = useRef();
 
   function addingProductIntoDB() {
-    console.log(
-      imgsrcRef.current.value,
-      titleRef.current.value,
-      sloganRef.current.value,
-      priceRef.current.value,
-      categoryRef.current.value
-    );
     axios
       .post("http://localhost:4500/addProduct", {
         imgsrc: imgsrcRef.current.value,

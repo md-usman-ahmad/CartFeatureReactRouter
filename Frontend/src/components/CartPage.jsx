@@ -4,38 +4,13 @@ import { MainLayout } from "./mainLayout.jsx";
 import { useNavigate } from "react-router";
 import { CartCard } from "./CartCard.jsx";
 
+import { useMyCartItems } from "../Hooks/useMyCartItems.js";
+
 export function CartPage() {
     const navigate = useNavigate();
     const token = localStorage.getItem("token");
 
-    const [MyCartItems , setMyCartItems] = useState([]);
-
-    
-
-    const myCartItems = ()=>{
-        axios({
-            method : "GET",
-            url : "http://localhost:4500/myCartItems",
-            headers : {
-                Authorization : token
-            }
-        })
-        .then((response)=>{
-            console.log("response.data = ",response.data);
-            setMyCartItems(response.data);
-        })
-        .catch((error)=>{
-            console.log("error = ",error);
-        })
-    }
-    useEffect( ()=>{
-        if(!token){
-            alert("Login first!!")
-            navigate("/");
-        } else{
-            myCartItems();
-        }
-    },[])
+    const {MyCartItems , freshMyCartItems} = useMyCartItems();
 
     const handleOnAddingAnItemToCart = (imgsrc,title,slogan,price, category ,pId)=>{
         axios({
@@ -51,7 +26,7 @@ export function CartPage() {
         .then((response)=>{
             console.log("addToCart response.data = ",response.data);
             alert(response.data);
-            myCartItems();
+            freshMyCartItems();
         })
         .catch((error)=>{
             console.log("addToCart error = ",error);
@@ -72,7 +47,7 @@ export function CartPage() {
         .then((response)=>{
             console.log("removeFromCart = ",response.data);
             alert(response.data);
-            myCartItems();
+            freshMyCartItems();
         })
         .catch((error)=>{
             console.log("removeFromCart = ",error);

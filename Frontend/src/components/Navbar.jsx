@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link , useLocation} from "react-router";
 import axios from "axios";
+import {useMyCartItems} from "../Hooks/useMyCartItems.js";
 
 
 export function Navbar(){
@@ -8,29 +9,35 @@ export function Navbar(){
     const Location = useLocation();
     console.log("Location.pathname = ",Location.pathname);
 
-    let token = localStorage.getItem("token");
-    console.log("Navbar token = ",token);
+    const token = localStorage.getItem("token");
 
-    const [totalCartItemsArray , setTotalCartItemsArray] = useState([]);
+    const {MyCartItems} = useMyCartItems();
+    console.log("MyCartItems = ",MyCartItems);
 
-    useEffect( ()=>{
-        if(token){
-            axios({
-                method : "GET",
-                url : "http://localhost:4500/myCartItems",
-                headers : {
-                    Authorization : token
-                } 
-            })
-            .then((response)=>{
-                console.log("navbar CartItems Count = ",response.data);
-                setTotalCartItemsArray(response.data);
-            })
-            .catch((error)=>{
-                console.log(error);
-            })
-        } 
-    },[])
+
+    // let token = localStorage.getItem("token");
+    // console.log("Navbar token = ",token);
+
+    // const [totalCartItemsArray , setTotalCartItemsArray] = useState([]);
+
+    // useEffect( ()=>{
+    //     if(token){
+    //         axios({
+    //             method : "GET",
+    //             url : "http://localhost:4500/myCartItems",
+    //             headers : {
+    //                 Authorization : token
+    //             } 
+    //         })
+    //         .then((response)=>{
+    //             console.log("navbar CartItems Count = ",response.data);
+    //             setTotalCartItemsArray(response.data);
+    //         })
+    //         .catch((error)=>{
+    //             console.log(error);
+    //         })
+    //     } 
+    // },[])
 
 
     return (
@@ -101,8 +108,8 @@ export function Navbar(){
                                     d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0h8"
                                     ></path>
                                 </svg>
-                                <span className="absolute -top-2 -right-2 bg-zinc-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                                    {totalCartItemsArray.map( (item)=>{
+                                <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                                    {MyCartItems.map( (item)=>{
                                         return item.quantity
                                     }).reduce( (acc,cv)=>{
                                         return acc + cv

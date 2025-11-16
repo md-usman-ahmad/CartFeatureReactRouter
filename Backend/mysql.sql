@@ -30,19 +30,39 @@ insert into Products(imgsrc,title,slogan,price,category) values
 ("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvejmrc3ZZKDjdFvNpnSDoBv07eDTqK_yDLw&s","Iphone XR","Turns every game into a smooth masterpiece.","86000","electronics");
 
 create table CartItems(
+    cartItemId int primary key auto_increment,
     imgsrc text,
-	title varchar(50),
+    title varchar(50),
     slogan varchar(300),
     price varchar(50),
     category varchar(50),
     quantity int,
     pId int,
     cartBy int,
-    foreign key (cartBy) references Products(productId)
+    foreign key (pId) references Products(productId),
+    foreign key (cartBy) references users(userId)
 );
+
 
 select * from CartItems;	
 select * from CartItems where pId = 3 AND cartBy = 3;
 -- truncate table CartItems;
 -- drop table CartItems;
 
+
+-- we could have used innerJoin in CartItems(quantity , pId , cartBy) se kaam hojata project complete k baad yaad aya mujhe iska .
+-- for Ex :- 
+-- create table CartItems(
+-- 	   pId int,
+--     cartBy int,
+--     quantity int,
+--     foreign key (pId) references Products(productId),
+--     foreign key (cartBy) references users(userId)
+-- );
+	
+-- select * from CartItems;
+-- insert into CartItems(pId,cartBy,quantity) values(3,7,1),(4,1,1),(5,11,1);
+
+-- select * 
+-- from Products 
+-- Inner join CartItems on CartItems.pId = Products.productId;

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router";
 import "./atc.css"
 
 export function Card({ productId, imgsrc, title, slogan ,price ,category}) {
-    
+
     const [CartState, setCartState] = useState({
         myCartItem: [],
         X : false
@@ -25,7 +25,7 @@ export function Card({ productId, imgsrc, title, slogan ,price ,category}) {
                     imgsrc,title,slogan,price,category,pId
                 },
                 headers : {
-                    Authorization : token
+                    Authorization : token   
                 }
             })
             .then((response)=>{
@@ -121,7 +121,7 @@ export function Card({ productId, imgsrc, title, slogan ,price ,category}) {
           </div>
           <div className="mc2 p-6">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{title}</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">{slogan}</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">{slogan.length > 20 ? slogan.slice(0,20)+". . . ." : slogan}</p>
               <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center space-x-2">
                       <span className="text-2xl font-bold text-gray-900 dark:text-white">₹{price}</span>
